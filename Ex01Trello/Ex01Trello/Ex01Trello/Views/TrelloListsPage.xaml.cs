@@ -31,7 +31,17 @@ namespace Ex01Trello.Views
 
         private void lvwTrelloLists_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            //stap1: haal het geselecteerde board op
+            TrelloList selectList = (TrelloList)lvwTrelloLists.SelectedItem;
+            //zelfde als hierboven
+            //TrelloBoard selectBoard = lvwBoards.SelectedItem as TrelloBoard;
 
+            //stap2
+            if (selectList != null)
+            {
+                Navigation.PushAsync(new TrelloCardsPage(selectList));
+            }
+            lvwTrelloLists.SelectedItem = null;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Ex01Trello.Views
         {
             InitializeComponent();
             this.MyList = list;
-            this.Title = list.Name;
+            lblListName.Text = list.Name;
 
             LoadCards();
         }
@@ -27,6 +27,26 @@ namespace Ex01Trello.Views
         private async Task LoadCards()
         {
             lvwCards.ItemsSource = await TrelloRepository.GetTrelloCards(MyList.ListId);
+        }
+
+        private void btnGoBack_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
+
+        private void lvwCards_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            //stap1: haal het geselecteerde board op
+            TrelloCard selectCard = (TrelloCard)lvwCards.SelectedItem;
+            //zelfde als hierboven
+            //TrelloBoard selectBoard = lvwBoards.SelectedItem as TrelloBoard;
+
+            //stap2
+            if (selectCard != null)
+            {
+                Navigation.PushAsync(new SingleCardPage());
+            }
+            lvwCards.SelectedItem = null;
         }
     }
 }
