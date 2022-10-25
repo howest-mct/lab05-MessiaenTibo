@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Runtime.Serialization;
 
 namespace Ex01Trello.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TrelloListsPage : ContentPage
     {
+
+
         public TrelloBoard MyBoard { get; set; }
         public TrelloListsPage(TrelloBoard board)
         {
@@ -39,7 +42,7 @@ namespace Ex01Trello.Views
             //stap2
             if (selectList != null)
             {
-                Navigation.PushAsync(new TrelloCardsPage(selectList));
+                Navigation.PushAsync(new TrelloCardsPage(MyBoard,selectList));
             }
             lvwTrelloLists.SelectedItem = null;
         }

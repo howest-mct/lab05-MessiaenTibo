@@ -112,7 +112,27 @@ namespace Ex01Trello.Repository
 
         public static async Task AddTrelloCardAsync(TrelloList list, TrelloCard newCard)
         {
-            
+            string url = $"{_BASEURL}cards?idList={list.ListId}&name={newCard.Name}&key={_APIKEY}&token={_USERTOKEN}";
+
+            using (HttpClient client = GetHttpClient())
+            {
+                try
+                {
+                    string json = JsonConvert.SerializeObject(newCard);
+                    StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync(url, content);
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        string errmsg = $"Unsuccesfull post to url: {url} and object: {json}";
+                        Console.WriteLine(errmsg);
+                        throw new Exception(errmsg);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label x:Name="lblList" Text="List name" TextColor="White" FontSize="Large" Margin="19,8" Grid.Row="0" />
+            <Label x:Name="lblList" Text="List name" TextColor="Black" FontSize="Large" Margin="19,8" Grid.Row="0" />
             <Label x:Name="lblBoard" Text="Board name" BackgroundColor="Wheat" HorizontalOptions="Start" FontSize="Small" Margin="19,4,8,8" Grid.Row="1" />
             <Grid Margin="8" Padding="8" BackgroundColor="White" Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -38,8 +38,8 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnCancel" Text="Cancel" />
-                <Button x:Name="btnSave" Text="Save" Grid.Column="1"  />
+                <Button x:Name="btnCancel" Text="Cancel" Clicked="btnCancel_Clicked"/>
+                <Button x:Name="btnSave" Text="Save" Grid.Column="1"  Clicked="btnSave_Clicked"/>
             </Grid>
         </Grid>
     </ContentPage.Content>
